@@ -1,5 +1,3 @@
-import React from "react";
-import PropTypes from "prop-types";
 import styled from "styled-components";
 import { ChevronUp, ChevronDown } from "react-feather";
 
@@ -43,35 +41,35 @@ const ControlInput = styled.input`
   color: ${(props) => props.theme.primary};
 `;
 
-function Input(props) {
-  const { value, handleSetValue, operators = false } = props;
+interface InputProps {
+  value: string | number;
+  handleSetValue: (value: string | number) => void;
+  operators?: boolean;
+}
 
-  function handleOnFocus(e) {
-    e.target.select();
-  }
-
+function Input({ value, handleSetValue, operators = false }: InputProps) {
   return (
     <ControlInputWrapper>
       <ControlInput
         type="text"
         value={value}
-        onFocus={handleOnFocus}
+        onFocus={(e) => e.target.select()}
         onChange={(e) => handleSetValue(e.currentTarget.value)}
       />
       {operators && (
         <Operators>
-          <ChevronUp size={10} onClick={() => handleSetValue(value + 1)} />
-          <ChevronDown size={10} onClick={() => handleSetValue(value - 1)} />
+          <ChevronUp
+            size={10}
+            onClick={() => handleSetValue(Number(value) + 1)}
+          />
+          <ChevronDown
+            size={10}
+            onClick={() => handleSetValue(Number(value) - 1)}
+          />
         </Operators>
       )}
     </ControlInputWrapper>
   );
 }
-
-Input.propTypes = {
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-  handleSetValue: PropTypes.func.isRequired,
-  operators: PropTypes.bool,
-};
 
 export default Input;

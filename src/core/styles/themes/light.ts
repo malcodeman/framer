@@ -1,4 +1,6 @@
-export default {
+import type { DefaultTheme } from "styled-components";
+
+const lightTheme: DefaultTheme = {
   brand: "#1473e6",
   primary: "#3f3f3f",
   secondary: "#818181",
@@ -11,5 +13,7 @@ export default {
   link: "#2680eb",
   borderColor: "#DDDDDD",
   borderWidth: "1px",
-  borderRadius: "2px"
+  borderRadius: "2px",
 };
+
+export default lightTheme;

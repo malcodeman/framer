@@ -1,9 +1,6 @@
-import React from "react";
-import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import * as FeatherIcons from "react-feather";
-
-import { setIconId } from "../../canvas/actions/canvasActionCreators";
+import { useApp } from "../../../context/AppContext";
 
 const Wrapper = styled.div`
   overflow-y: auto;
@@ -29,7 +26,7 @@ const IconWrapper = styled.div`
   border-radius: ${(props) => props.theme.borderRadius};
   background-color: ${(props) => props.theme.backgroundSecondary};
   border: ${(props) =>
-    `${props.theme.borderWidth} solid  ${props.theme.borderColor};`};
+    `${props.theme.borderWidth} solid ${props.theme.borderColor};`};
 `;
 
 const IconName = styled.span`
@@ -41,7 +38,7 @@ const IconName = styled.span`
 `;
 
 function Store() {
-  const dispatch = useDispatch();
+  const { setIconId } = useApp();
 
   return (
     <Wrapper>
@@ -49,7 +46,7 @@ function Store() {
         {Object.values(FeatherIcons).map((Icon) => (
           <IconWrapper
             key={Icon.displayName}
-            onClick={() => dispatch(setIconId(Icon.displayName))}
+            onClick={() => setIconId(Icon.displayName ?? "")}
           >
             <Icon />
             <IconName>{Icon.displayName}</IconName>

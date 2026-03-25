@@ -1,4 +1,6 @@
-export default {
+import type { DefaultTheme } from "styled-components";
+
+const darkTheme: DefaultTheme = {
   brand: "#1473e6",
   primary: "#FFFFFF",
   secondary: "#818181",
@@ -11,5 +13,7 @@ export default {
   link: "#2680eb",
   borderColor: "#000000",
   borderWidth: "1px",
-  borderRadius: "2px"
+  borderRadius: "2px",
 };
+
+export default darkTheme;

@@ -1,6 +1,4 @@
-import React from "react";
-import PropTypes from "prop-types";
-import styled, { withTheme } from "styled-components";
+import styled, { useTheme } from "styled-components";
 import { Minus, Plus } from "react-feather";
 
 const StyledPanelTitle = styled.div`
@@ -21,32 +19,32 @@ const PanelTitleText = styled.h2`
   color: ${(props) => props.theme.primary};
 `;
 
-function PanelTitle(props) {
-  const { expanded = false } = props;
+interface PanelTitleProps {
+  title: string;
+  expanded?: boolean;
+  setExpanded: (expanded: boolean) => void;
+}
 
+function PanelTitle({ title, expanded = false, setExpanded }: PanelTitleProps) {
+  const theme = useTheme();
   return (
     <StyledPanelTitle>
-      <PanelTitleText>{props.title}</PanelTitleText>
+      <PanelTitleText>{title}</PanelTitleText>
       {expanded ? (
         <Minus
           size={12}
-          color={props.theme.primary}
-          onClick={() => props.setExpanded(false)}
+          color={theme.primary}
+          onClick={() => setExpanded(false)}
         />
       ) : (
         <Plus
           size={12}
-          color={props.theme.primary}
-          onClick={() => props.setExpanded(true)}
+          color={theme.primary}
+          onClick={() => setExpanded(true)}
         />
       )}
     </StyledPanelTitle>
   );
 }
 
-PanelTitle.propTypes = {
-  expanded: PropTypes.bool,
-  setExpanded: PropTypes.func.isRequired,
-};
-
-export default withTheme(PanelTitle);
+export default PanelTitle;

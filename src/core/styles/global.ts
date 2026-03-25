@@ -1,6 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 
-const global = createGlobalStyle`
+const Global = createGlobalStyle`
   *,
   *:before,
   *:after {
@@ -22,15 +22,9 @@ const global = createGlobalStyle`
     outline: 0;
   }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  p {
+  h1, h2, h3, h4, h5, h6, p {
     margin: 0;
   }
 `;
 
-export default global;
+export default Global;

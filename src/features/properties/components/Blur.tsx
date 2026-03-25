@@ -1,25 +1,25 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
-
+import { useState } from "react";
 import {
   Panel,
   PanelBody,
   Control,
-  ControlLabel
+  ControlLabel,
 } from "../styles/propertiesStyles";
 import PanelTitle from "./PanelTitle";
 import Input from "./Input";
 
-function Blur(props) {
+interface BlurProps {
+  blur: number;
+  setBlur: (value: number) => void;
+}
+
+function Blur({ blur, setBlur }: BlurProps) {
   const [expanded, setExpanded] = useState(true);
 
-  function handleOnChange(value) {
+  function handleOnChange(value: string | number) {
     const number = Number(value);
-
-    if (number < 0 || isNaN(number) || number.toString().length > 4) {
-      return;
-    }
-    props.setBlur(number);
+    if (number < 0 || isNaN(number) || number.toString().length > 4) return;
+    setBlur(number);
   }
 
   return (
@@ -29,22 +29,12 @@ function Blur(props) {
         <PanelBody>
           <Control>
             <ControlLabel>Amount</ControlLabel>
-            <Input
-              type="text"
-              value={props.blur}
-              handleSetValue={handleOnChange}
-              operators
-            />
+            <Input value={blur} handleSetValue={handleOnChange} operators />
           </Control>
         </PanelBody>
       )}
     </Panel>
   );
 }
-
-Blur.propTypes = {
-  blur: PropTypes.number.isRequired,
-  setBlur: PropTypes.func.isRequired
-};
 
 export default Blur;

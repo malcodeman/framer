@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { Link } from "@tanstack/react-router";
 import { Plus, ShoppingBag } from "react-feather";
-
 import Theme from "./Theme";
 
 const StyledToolbar = styled.div`
@@ -13,13 +12,13 @@ const StyledToolbar = styled.div`
   background-color: ${(props) => props.theme.backgroundSecondary};
   transition: ${(props) => props.theme.backgroundColorTransition};
   border-bottom: ${(props) =>
-    `${props.theme.borderWidth} solid  ${props.theme.borderColor};`};
+    `${props.theme.borderWidth} solid ${props.theme.borderColor};`};
   @media (min-width: 768px) {
     flex-direction: column;
     justify-content: initial;
     border-bottom: initial;
     border-right: ${(props) =>
-    `${props.theme.borderWidth} solid  ${props.theme.borderColor};`};
+      `${props.theme.borderWidth} solid ${props.theme.borderColor};`};
   }
 `;
 
@@ -39,7 +38,11 @@ const StyledLink = styled(Link)`
 function Toolbar() {
   return (
     <StyledToolbar>
-      <StyledLink to="/" activeProps={{ className: "active" }} activeOptions={{ exact: true }}>
+      <StyledLink
+        to="/"
+        activeProps={{ className: "active" }}
+        activeOptions={{ exact: true }}
+      >
         <Plus size={16} />
       </StyledLink>
       <StyledLink to="/store" activeProps={{ className: "active" }}>

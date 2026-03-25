@@ -1,8 +1,6 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
+import { useState } from "react";
 import styled from "styled-components";
 import { HexColorPicker } from "react-colorful";
-
 import { Panel, PanelBody } from "../styles/propertiesStyles";
 import PanelTitle from "./PanelTitle";
 import Input from "./Input";
@@ -14,12 +12,16 @@ const StyledHexColorPicker = styled(HexColorPicker)`
 const Control = styled.div`
   padding: 0 10px;
   :not(:last-child) {
-    margin-bottom: ${(props) =>
-      props.marginBottom ? props.marginBottom : "10px"};
+    margin-bottom: 10px;
   }
 `;
 
-function Fill(props) {
+interface FillProps {
+  color: string;
+  setColor: (color: string) => void;
+}
+
+function Fill({ color, setColor }: FillProps) {
   const [expanded, setExpanded] = useState(true);
 
   return (
@@ -28,14 +30,10 @@ function Fill(props) {
       {expanded && (
         <PanelBody>
           <Control>
-            <StyledHexColorPicker
-              color={props.color}
-              onChange={props.setColor}
-            />
+            <StyledHexColorPicker color={color} onChange={setColor} />
             <Input
-              type="text"
-              value={props.color}
-              handleSetValue={props.setColor}
+              value={color}
+              handleSetValue={(val) => setColor(String(val))}
             />
           </Control>
         </PanelBody>
@@ -43,10 +41,5 @@ function Fill(props) {
     </Panel>
   );
 }
-
-Fill.propTypes = {
-  color: PropTypes.string.isRequired,
-  setColor: PropTypes.func.isRequired,
-};
 
 export default Fill;
