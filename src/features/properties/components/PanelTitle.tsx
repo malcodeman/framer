@@ -1,23 +1,4 @@
-import styled, { useTheme } from "styled-components";
 import { Minus, Plus } from "react-feather";
-
-const StyledPanelTitle = styled.div`
-  height: 26px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px;
-  background-color: ${(props) => props.theme.backgroundInput};
-  svg {
-    cursor: pointer;
-  }
-`;
-
-const PanelTitleText = styled.h2`
-  font-size: 0.8rem;
-  font-weight: normal;
-  color: ${(props) => props.theme.primary};
-`;
 
 interface PanelTitleProps {
   title: string;
@@ -26,24 +7,23 @@ interface PanelTitleProps {
 }
 
 function PanelTitle({ title, expanded = false, setExpanded }: PanelTitleProps) {
-  const theme = useTheme();
   return (
-    <StyledPanelTitle>
-      <PanelTitleText>{title}</PanelTitleText>
+    <div className="h-[26px] flex items-center justify-between px-2.5 bg-white dark:bg-neutral-700 text-neutral-700 dark:text-white transition-colors duration-200">
+      <h2 className="text-xs font-normal">{title}</h2>
       {expanded ? (
         <Minus
           size={12}
-          color={theme.primary}
+          className="cursor-pointer"
           onClick={() => setExpanded(false)}
         />
       ) : (
         <Plus
           size={12}
-          color={theme.primary}
+          className="cursor-pointer"
           onClick={() => setExpanded(true)}
         />
       )}
-    </StyledPanelTitle>
+    </div>
   );
 }
 

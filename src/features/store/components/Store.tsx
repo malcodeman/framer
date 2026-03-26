@@ -1,59 +1,29 @@
-import styled from "styled-components";
 import * as FeatherIcons from "react-feather";
 import { useApp } from "../../../context/AppContext";
-
-const Wrapper = styled.div`
-  overflow-y: auto;
-  transition: ${(props) => props.theme.backgroundColorTransition};
-  background-color: ${(props) => props.theme.backgroundPrimary};
-`;
-
-const Grid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(64px, 1fr));
-  grid-gap: 10px;
-  padding: 10px;
-`;
-
-const IconWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 10px;
-  cursor: pointer;
-  color: ${(props) => props.theme.primary};
-  border-radius: ${(props) => props.theme.borderRadius};
-  background-color: ${(props) => props.theme.backgroundSecondary};
-  border: ${(props) =>
-    `${props.theme.borderWidth} solid ${props.theme.borderColor};`};
-`;
-
-const IconName = styled.span`
-  font-size: 0.8rem;
-  margin-top: 10px;
-  text-align: center;
-  overflow-wrap: anywhere;
-  color: ${(props) => props.theme.primary};
-`;
 
 function Store() {
   const { setIconId } = useApp();
 
   return (
-    <Wrapper>
-      <Grid>
+    <div className="overflow-y-auto bg-neutral-50 dark:bg-neutral-900 transition-colors duration-200">
+      <div
+        className="grid gap-2.5 p-2.5"
+        style={{ gridTemplateColumns: "repeat(auto-fit, minmax(64px, 1fr))" }}
+      >
         {Object.values(FeatherIcons).map((Icon) => (
-          <IconWrapper
+          <div
             key={Icon.displayName}
             onClick={() => setIconId(Icon.displayName ?? "")}
+            className="flex flex-col items-center justify-center p-2.5 cursor-pointer text-neutral-700 dark:text-white rounded-sm bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-black"
           >
             <Icon />
-            <IconName>{Icon.displayName}</IconName>
-          </IconWrapper>
+            <span className="text-[0.8rem] mt-2.5 text-center [overflow-wrap:anywhere] text-neutral-700 dark:text-white">
+              {Icon.displayName}
+            </span>
+          </div>
         ))}
-      </Grid>
-    </Wrapper>
+      </div>
+    </div>
   );
 }
 

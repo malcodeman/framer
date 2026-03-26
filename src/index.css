@@ -1,0 +1,11 @@
+@import "tailwindcss";
+@variant dark (&:is(.dark *));
+
+@layer base {
+  body {
+    font-family: "Roboto", sans-serif;
+  }
+  a {
+    text-decoration: none;
+  }
+}

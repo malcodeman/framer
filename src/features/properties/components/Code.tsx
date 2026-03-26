@@ -1,21 +1,5 @@
 import ReactDOMServer from "react-dom/server";
-import styled from "styled-components";
 import * as FeatherIcons from "react-feather";
-
-const CodeMode = styled.div`
-  padding: 0 10px;
-`;
-
-const PreformattedText = styled.pre`
-  white-space: pre-wrap;
-  margin: 0;
-`;
-
-const StyledCode = styled.code`
-  font-family: "Roboto Mono", monospace;
-  font-size: 0.6rem;
-  color: ${(props) => props.theme.primary};
-`;
 
 type FeatherIcon = React.FC<{ style?: React.CSSProperties }> & {
   displayName?: string;
@@ -54,13 +38,13 @@ function Code({
     icons.find((item) => item.displayName === iconId) ?? FeatherIcons.GitHub;
 
   return (
-    <CodeMode>
-      <PreformattedText>
-        <StyledCode>
+    <div className="px-2.5 pt-2.5">
+      <pre className="whitespace-pre-wrap m-0">
+        <code className="font-mono text-[0.6rem] text-neutral-700 dark:text-white">
           {ReactDOMServer.renderToStaticMarkup(<Element style={style} />)}
-        </StyledCode>
-      </PreformattedText>
-    </CodeMode>
+        </code>
+      </pre>
+    </div>
   );
 }
 

@@ -1,21 +1,10 @@
 import { useState } from "react";
-import styled from "styled-components";
 import { useApp } from "../../../context/AppContext";
 import Modes from "./Modes";
 import Dimensions from "./Dimensions";
 import Fill from "./Fill";
 import Blur from "./Blur";
 import Code from "./Code";
-
-const PropertiesPanel = styled.div`
-  display: flex;
-  flex-direction: column;
-  overflow-y: auto;
-  background-color: ${(props) => props.theme.backgroundPrimary};
-  transition: ${(props) => props.theme.backgroundColorTransition};
-  border-left: ${(props) =>
-    `${props.theme.borderWidth} solid ${props.theme.borderColor};`};
-`;
 
 function Properties() {
   const [showCode, setShowCode] = useState(false);
@@ -36,7 +25,7 @@ function Properties() {
   } = useApp();
 
   return (
-    <PropertiesPanel>
+    <div className="flex flex-col overflow-y-auto bg-neutral-50 dark:bg-neutral-900 border-l border-neutral-200 dark:border-black transition-colors duration-200">
       <Modes showCode={showCode} setShowCode={setShowCode} />
       {showCode ? (
         <Code
@@ -64,7 +53,7 @@ function Properties() {
           <Blur blur={blur} setBlur={setBlur} />
         </>
       )}
-    </PropertiesPanel>
+    </div>
   );
 }
 

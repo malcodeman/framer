@@ -37,9 +37,14 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   const [opacity, setOpacity] = useState(1);
   const [rotation, setRotation] = useState(0);
   const [blur, setBlur] = useState(0);
-  const [darkMode, setDarkMode] = useState(loadDarkMode);
+  const [darkMode, setDarkMode] = useState(() => {
+    const d = loadDarkMode();
+    document.documentElement.classList.toggle("dark", d);
+    return d;
+  });
 
   useEffect(() => {
+    document.documentElement.classList.toggle("dark", darkMode);
     try {
       localStorage.setItem("darkMode", String(darkMode));
     } catch {}

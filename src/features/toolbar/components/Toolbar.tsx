@@ -1,55 +1,27 @@
-import styled from "styled-components";
 import { Link } from "@tanstack/react-router";
 import { Plus, ShoppingBag } from "react-feather";
 import Theme from "./Theme";
 
-const StyledToolbar = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow-y: auto;
-  padding: 10px;
-  background-color: ${(props) => props.theme.backgroundSecondary};
-  transition: ${(props) => props.theme.backgroundColorTransition};
-  border-bottom: ${(props) =>
-    `${props.theme.borderWidth} solid ${props.theme.borderColor};`};
-  @media (min-width: 768px) {
-    flex-direction: column;
-    justify-content: initial;
-    border-bottom: initial;
-    border-right: ${(props) =>
-      `${props.theme.borderWidth} solid ${props.theme.borderColor};`};
-  }
-`;
-
-const StyledLink = styled(Link)`
-  display: flex;
-  margin-right: 24px;
-  color: ${(props) => props.theme.primary};
-  &.active {
-    color: ${(props) => props.theme.brand};
-  }
-  @media (min-width: 768px) {
-    margin-right: initial;
-    margin-bottom: 24px;
-  }
-`;
-
 function Toolbar() {
   return (
-    <StyledToolbar>
-      <StyledLink
+    <div className="flex justify-center items-center overflow-y-auto p-2.5 bg-white dark:bg-neutral-950 border-b border-neutral-200 dark:border-black transition-colors duration-200 md:flex-col md:justify-start md:border-b-0 md:border-r">
+      <Link
         to="/"
-        activeProps={{ className: "active" }}
+        activeProps={{ className: "!text-blue-600" }}
         activeOptions={{ exact: true }}
+        className="flex mr-6 text-neutral-700 dark:text-white md:mr-0 md:mb-6"
       >
         <Plus size={16} />
-      </StyledLink>
-      <StyledLink to="/store" activeProps={{ className: "active" }}>
+      </Link>
+      <Link
+        to="/store"
+        activeProps={{ className: "!text-blue-600" }}
+        className="flex mr-6 text-neutral-700 dark:text-white md:mr-0 md:mb-6"
+      >
         <ShoppingBag size={16} />
-      </StyledLink>
+      </Link>
       <Theme />
-    </StyledToolbar>
+    </div>
   );
 }
 

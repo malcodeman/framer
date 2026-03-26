@@ -1,10 +1,4 @@
 import { useState } from "react";
-import {
-  Panel,
-  PanelBody,
-  Control,
-  ControlLabel,
-} from "../styles/propertiesStyles";
 import PanelTitle from "./PanelTitle";
 import Input from "./Input";
 
@@ -23,17 +17,19 @@ function Blur({ blur, setBlur }: BlurProps) {
   }
 
   return (
-    <Panel>
+    <div className="border-b border-neutral-200 dark:border-black">
       <PanelTitle title="Blur" expanded={expanded} setExpanded={setExpanded} />
       {expanded && (
-        <PanelBody>
-          <Control>
-            <ControlLabel>Amount</ControlLabel>
+        <div className="pb-2.5">
+          <div className="grid grid-cols-[1fr_2fr] items-center px-2.5">
+            <label className="text-xs text-neutral-500 dark:text-neutral-400">
+              Amount
+            </label>
             <Input value={blur} handleSetValue={handleOnChange} operators />
-          </Control>
-        </PanelBody>
+          </div>
+        </div>
       )}
-    </Panel>
+    </div>
   );
 }
 

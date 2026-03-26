@@ -1,15 +1,5 @@
-import styled from "styled-components";
 import * as FeatherIcons from "react-feather";
 import { useApp } from "../../../context/AppContext";
-
-const StyledCanvas = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow-y: auto;
-  background-color: ${(props) => props.theme.backgroundCanvas};
-  transition: ${(props) => props.theme.backgroundColorTransition};
-`;
 
 type FeatherIcon = React.FC<{ style?: React.CSSProperties }> & {
   displayName?: string;
@@ -33,9 +23,9 @@ function Canvas() {
     icons.find((item) => item.displayName === iconId) ?? FeatherIcons.GitHub;
 
   return (
-    <StyledCanvas>
+    <div className="flex items-center justify-center overflow-y-auto bg-neutral-200 dark:bg-neutral-800 transition-colors duration-200">
       <Element style={style} />
-    </StyledCanvas>
+    </div>
   );
 }
 

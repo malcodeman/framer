@@ -1,37 +1,29 @@
-import styled from "styled-components";
-
-const StyledModes = styled.header`
-  display: flex;
-  align-items: center;
-`;
-
-const Text = styled.span<{ $active: boolean }>`
-  font-size: 0.8rem;
-  padding: 10px;
-  line-height: 40px;
-  cursor: default;
-  &:hover {
-    color: ${(props) => props.theme.primary};
-  }
-  color: ${(props) =>
-    props.$active ? props.theme.primary : props.theme.secondary};
-`;
-
 interface ModesProps {
   showCode: boolean;
   setShowCode: (value: boolean) => void;
 }
 
 function Modes({ showCode, setShowCode }: ModesProps) {
+  const base =
+    "text-xs px-2.5 leading-10 cursor-default hover:text-neutral-700 dark:hover:text-white";
+  const active = "text-neutral-700 dark:text-white";
+  const inactive = "text-neutral-500";
+
   return (
-    <StyledModes>
-      <Text $active={!showCode} onClick={() => setShowCode(false)}>
+    <header className="flex items-center border-b border-neutral-200 dark:border-black">
+      <span
+        className={`${base} ${!showCode ? active : inactive}`}
+        onClick={() => setShowCode(false)}
+      >
         Design
-      </Text>
-      <Text $active={showCode} onClick={() => setShowCode(true)}>
+      </span>
+      <span
+        className={`${base} ${showCode ? active : inactive}`}
+        onClick={() => setShowCode(true)}
+      >
         Code
-      </Text>
-    </StyledModes>
+      </span>
+    </header>
   );
 }
 

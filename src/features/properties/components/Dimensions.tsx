@@ -1,50 +1,6 @@
 import { useState } from "react";
-import styled from "styled-components";
 import { Lock } from "react-feather";
-import {
-  Panel,
-  PanelBody,
-  Control,
-  ControlLabel,
-} from "../styles/propertiesStyles";
 import Input from "./Input";
-
-const LockGrid = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-`;
-
-const LockWrapper = styled.div<{ $active: boolean }>`
-  display: flex;
-  justify-content: flex-end;
-  padding: 0 5px;
-  color: ${(props) =>
-    props.$active ? props.theme.brand : props.theme.primary};
-`;
-
-const BorderTop = styled.div`
-  height: 5px;
-  width: 5px;
-  margin: 0 10px;
-  border-top-left-radius: ${(props) => props.theme.borderRadius};
-  border-top: ${(props) => `1px solid ${props.theme.secondary};`};
-  border-left: ${(props) => `1px solid ${props.theme.secondary};`};
-`;
-
-const BorderBottom = styled.div`
-  height: 5px;
-  width: 5px;
-  margin: 0 10px;
-  border-bottom-left-radius: ${(props) => props.theme.borderRadius};
-  border-left: ${(props) => `1px solid ${props.theme.secondary};`};
-  border-bottom: ${(props) => `1px solid ${props.theme.secondary};`};
-`;
-
-const LabelWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
 
 interface DimensionsProps {
   width: number;
@@ -95,45 +51,36 @@ function Dimensions({
     setRotation(number);
   }
 
+  const row = "grid grid-cols-[1fr_2fr] items-center px-2.5";
+  const label = "text-xs text-neutral-500 dark:text-neutral-400";
+
   return (
-    <Panel>
-      <PanelBody>
-        <Control $marginBottom="0">
-          <LabelWrapper>
-            <ControlLabel>Width</ControlLabel>
-            <BorderTop />
-          </LabelWrapper>
-          <Input value={width} handleSetValue={handleSetWidth} operators />
-        </Control>
-        <LockGrid>
-          <LockWrapper
-            $active={constrainProportions}
-            onClick={() => setConstrainProportions((v) => !v)}
-          >
-            <Lock size={10} />
-          </LockWrapper>
-        </LockGrid>
-        <Control>
-          <LabelWrapper>
-            <ControlLabel>Height</ControlLabel>
-            <BorderBottom />
-          </LabelWrapper>
-          <Input value={height} handleSetValue={handleSetHeight} operators />
-        </Control>
-        <Control>
-          <ControlLabel>Opacity</ControlLabel>
-          <Input value={opacity} handleSetValue={handleSetOpacity} />
-        </Control>
-        <Control>
-          <ControlLabel>Rotation</ControlLabel>
-          <Input
-            value={rotation}
-            handleSetValue={handleSetRotation}
-            operators
-          />
-        </Control>
-      </PanelBody>
-    </Panel>
+    <div className="border-b border-neutral-200 dark:border-black pb-2.5">
+      <div className={row}>
+        <label className={label}>Width</label>
+        <Input value={width} handleSetValue={handleSetWidth} operators />
+      </div>
+      <div className="grid grid-cols-[1fr_2fr] my-0.5">
+        <div
+          className={`flex justify-end px-1.5 cursor-pointer ${constrainProportions ? "text-blue-600" : "text-neutral-500"}`}
+          onClick={() => setConstrainProportions((v) => !v)}
+        >
+          <Lock size={10} />
+        </div>
+      </div>
+      <div className={row}>
+        <label className={label}>Height</label>
+        <Input value={height} handleSetValue={handleSetHeight} operators />
+      </div>
+      <div className={`${row} mt-2.5`}>
+        <label className={label}>Opacity</label>
+        <Input value={opacity} handleSetValue={handleSetOpacity} />
+      </div>
+      <div className={`${row} mt-2.5`}>
+        <label className={label}>Rotation</label>
+        <Input value={rotation} handleSetValue={handleSetRotation} operators />
+      </div>
+    </div>
   );
 }
 

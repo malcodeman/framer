@@ -1,45 +1,4 @@
-import styled from "styled-components";
 import { ChevronUp, ChevronDown } from "react-feather";
-
-const Operators = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 0 4px;
-  height: 100%;
-  visibility: hidden;
-  justify-content: space-between;
-  color: ${(props) => props.theme.primary};
-  background-color: ${(props) => props.theme.backgroundInput};
-  border-left: ${(props) => `1px solid ${props.theme.borderColor};`};
-`;
-
-const ControlInputWrapper = styled.div`
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: center;
-  height: 24px;
-  border-radius: ${(props) => props.theme.borderRadius};
-  background-color: ${(props) => props.theme.backgroundInput};
-  border: ${(props) => `1px solid ${props.theme.borderColor};`};
-  &:hover ${Operators} {
-    visibility: visible;
-  }
-  &:focus-within {
-    border-color: ${(props) => props.theme.brand};
-  }
-`;
-
-const ControlInput = styled.input`
-  font-size: 0.8rem;
-  width: 100%;
-  height: 100%;
-  cursor: default;
-  border: 0;
-  padding: 0 4px;
-  font-family: "Roboto", sans-serif;
-  background-color: transparent;
-  color: ${(props) => props.theme.primary};
-`;
 
 interface InputProps {
   value: string | number;
@@ -49,26 +8,29 @@ interface InputProps {
 
 function Input({ value, handleSetValue, operators = false }: InputProps) {
   return (
-    <ControlInputWrapper>
-      <ControlInput
+    <div className="group grid grid-cols-[1fr_auto] items-center h-6 rounded-sm bg-white dark:bg-neutral-700 border border-neutral-200 dark:border-black focus-within:border-blue-600 transition-colors duration-200">
+      <input
         type="text"
         value={value}
+        className="text-xs w-full h-full cursor-default border-0 px-1 bg-transparent text-neutral-700 dark:text-white outline-none"
         onFocus={(e) => e.target.select()}
         onChange={(e) => handleSetValue(e.currentTarget.value)}
       />
       {operators && (
-        <Operators>
+        <div className="flex flex-col px-1 h-full invisible group-hover:visible justify-between text-neutral-700 dark:text-white bg-white dark:bg-neutral-700 border-l border-neutral-200 dark:border-black">
           <ChevronUp
             size={10}
+            className="cursor-pointer"
             onClick={() => handleSetValue(Number(value) + 1)}
           />
           <ChevronDown
             size={10}
+            className="cursor-pointer"
             onClick={() => handleSetValue(Number(value) - 1)}
           />
-        </Operators>
+        </div>
       )}
-    </ControlInputWrapper>
+    </div>
   );
 }
 
