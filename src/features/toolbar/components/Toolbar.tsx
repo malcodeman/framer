@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Plus, ShoppingBag } from "react-feather";
+import { FiPlus as Plus, FiShoppingBag as ShoppingBag } from "react-icons/fi";
 import Theme from "./Theme";
 
 function Toolbar() {

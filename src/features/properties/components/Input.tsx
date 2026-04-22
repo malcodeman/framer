@@ -1,4 +1,7 @@
-import { ChevronUp, ChevronDown } from "react-feather";
+import {
+  FiChevronDown as ChevronDown,
+  FiChevronUp as ChevronUp,
+} from "react-icons/fi";
 
 interface InputProps {
   value: string | number;

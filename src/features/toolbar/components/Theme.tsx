@@ -1,4 +1,4 @@
-import { Moon, Sun } from "react-feather";
+import { FiMoon as Moon, FiSun as Sun } from "react-icons/fi";
 import { useApp } from "../../../context/AppContext";
 
 function Theme() {

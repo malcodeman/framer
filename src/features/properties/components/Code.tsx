@@ -1,9 +1,5 @@
 import ReactDOMServer from "react-dom/server";
-import * as FeatherIcons from "react-feather";
-
-type FeatherIcon = React.FC<{ style?: React.CSSProperties }> & {
-  displayName?: string;
-};
+import { fallbackIcon, icons } from "../../../core/icons";
 
 interface CodeProps {
   iconId: string;
@@ -33,9 +29,8 @@ function Code({
     filter: `blur(${blur}px)`,
   };
 
-  const icons = Object.values(FeatherIcons) as FeatherIcon[];
   const Element =
-    icons.find((item) => item.displayName === iconId) ?? FeatherIcons.GitHub;
+    icons.find((item) => item.name === iconId)?.Component ?? fallbackIcon;
 
   return (
     <div className="px-2.5 pt-2.5">

@@ -1,4 +1,4 @@
-import { Minus, Plus } from "react-feather";
+import { FiMinus as Minus, FiPlus as Plus } from "react-icons/fi";
 
 interface PanelTitleProps {
   title: string;

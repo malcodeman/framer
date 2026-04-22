@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Lock } from "react-feather";
+import { FiLock as Lock } from "react-icons/fi";
 import Input from "./Input";
 
 interface DimensionsProps {
