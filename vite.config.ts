@@ -1,15 +1,20 @@
-import { defineConfig } from 'vite'
-import tailwindcss from '@tailwindcss/vite'
-import react from '@vitejs/plugin-react'
-import { TanStackRouterVite } from '@tanstack/router-plugin/vite'
+import { defineConfig } from "vite";
+import tailwindcss from "@tailwindcss/vite";
+import react from "@vitejs/plugin-react";
+import { tanstackStart } from "@tanstack/react-start/plugin/vite";
+import { nitro } from "nitro/vite";
 
 export default defineConfig({
   plugins: [
-    TanStackRouterVite({
-      routesDirectory: './src/routes',
-      generatedRouteTree: './src/routeTree.gen.ts',
-    }),
     tailwindcss(),
+    tanstackStart({
+      srcDirectory: "src",
+      tsr: {
+        routesDirectory: "./src/routes",
+        generatedRouteTree: "./src/routeTree.gen.ts",
+      },
+    }),
     react(),
+    nitro(),
   ],
-})
+});

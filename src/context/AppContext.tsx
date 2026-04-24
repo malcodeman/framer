@@ -20,11 +20,11 @@ export interface AppContextValue {
 }
 
 function loadDarkMode(): boolean {
-  try {
-    return localStorage.getItem("darkMode") === "true";
-  } catch {
+  if (typeof window === "undefined") {
     return false;
   }
+
+  return window.localStorage.getItem("darkMode") === "true";
 }
 
 const AppContext = createContext<AppContextValue | null>(null);
@@ -37,17 +37,19 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   const [opacity, setOpacity] = useState(1);
   const [rotation, setRotation] = useState(0);
   const [blur, setBlur] = useState(0);
-  const [darkMode, setDarkMode] = useState(() => {
-    const d = loadDarkMode();
-    document.documentElement.classList.toggle("dark", d);
-    return d;
-  });
+  const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
+    setDarkMode(loadDarkMode());
+  }, []);
+
+  useEffect(() => {
+    if (typeof document === "undefined") {
+      return;
+    }
+
     document.documentElement.classList.toggle("dark", darkMode);
-    try {
-      localStorage.setItem("darkMode", String(darkMode));
-    } catch {}
+    window.localStorage.setItem("darkMode", String(darkMode));
   }, [darkMode]);
 
   return (

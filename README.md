@@ -10,11 +10,18 @@ Interactive design tool.
 
 ## Getting started
 
-```
+``` 
 git clone https://github.com/malcodeman/framer.git
 cd framer
-yarn install
-yarn start
+pnpm install
+pnpm dev
+```
+
+For a production-style start:
+
+```
+pnpm build
+pnpm start
 ```
 
 ## License
