@@ -1,20 +1,21 @@
 import { FiMoon as Moon, FiSun as Sun } from "react-icons/fi";
-import { useApp } from "../../../context/AppContext";
+import { useTheme } from "next-themes";
 
 function Theme() {
-  const { darkMode, toggleDarkMode } = useApp();
+  const { resolvedTheme, setTheme } = useTheme();
+  const darkMode = resolvedTheme === "dark";
 
   return darkMode ? (
     <Sun
       size={16}
       className="text-white cursor-pointer"
-      onClick={toggleDarkMode}
+      onClick={() => setTheme("light")}
     />
   ) : (
     <Moon
       size={16}
       className="text-neutral-700 cursor-pointer"
-      onClick={toggleDarkMode}
+      onClick={() => setTheme("dark")}
     />
   );
 }

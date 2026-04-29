@@ -6,6 +6,7 @@ import {
   Scripts,
   createRootRoute,
 } from "@tanstack/react-router";
+import { ThemeProvider } from "next-themes";
 import { AppProvider } from "../context/AppContext";
 import appCss from "../index.css?url";
 
@@ -25,16 +26,22 @@ export const Route = createRootRoute({
   shellComponent: RootDocument,
   component: function Root() {
     return (
-      <AppProvider>
-        <Outlet />
-      </AppProvider>
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="light"
+        enableSystem={false}
+      >
+        <AppProvider>
+          <Outlet />
+        </AppProvider>
+      </ThemeProvider>
     );
   },
 });
 
 function RootDocument({ children }: { children: ReactNode }) {
   return (
-    <html>
+    <html suppressHydrationWarning>
       <head>
         <HeadContent />
       </head>
