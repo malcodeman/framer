@@ -6,37 +6,40 @@ import Fill from "./Fill";
 import Blur from "./Blur";
 import Code from "./Code";
 
-function Properties() {
+interface PropertiesProps {
+  showModes?: boolean;
+  borderClassName?: string;
+}
+
+function Properties({
+  showModes = true,
+  borderClassName = "border-l border-neutral-200 dark:border-black",
+}: PropertiesProps) {
   const [showCode, setShowCode] = useState(false);
   const {
-    iconId,
-    color,
-    width,
-    height,
-    opacity,
-    rotation,
-    blur,
     setColor,
     setWidth,
     setHeight,
     setOpacity,
     setRotation,
     setBlur,
+    color,
+    width,
+    height,
+    opacity,
+    rotation,
+    blur,
   } = useApp();
 
+  const shouldShowCode = showModes && showCode;
+
   return (
-    <div className="flex flex-col overflow-y-auto bg-neutral-50 dark:bg-neutral-900 border-l border-neutral-200 dark:border-black transition-colors duration-200">
-      <Modes showCode={showCode} setShowCode={setShowCode} />
-      {showCode ? (
-        <Code
-          iconId={iconId}
-          color={color}
-          width={width}
-          height={height}
-          opacity={opacity}
-          rotation={rotation}
-          blur={blur}
-        />
+    <div
+      className={`flex flex-col overflow-y-auto bg-neutral-50 dark:bg-neutral-900 ${borderClassName} transition-colors duration-200`}
+    >
+      {showModes && <Modes showCode={showCode} setShowCode={setShowCode} />}
+      {shouldShowCode ? (
+        <Code />
       ) : (
         <>
           <Dimensions

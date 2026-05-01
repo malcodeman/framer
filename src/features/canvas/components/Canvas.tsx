@@ -1,24 +1,23 @@
-import { fallbackIcon, icons } from "../../../core/icons";
 import { useApp } from "../../../context/AppContext";
+import { createIconStyle, getIconComponent } from "../../../core/iconPreview";
 
-function Canvas() {
+interface CanvasProps {
+  className?: string;
+}
+
+function Canvas({ className = "" }: CanvasProps) {
   const { iconId, color, width, height, opacity, rotation, blur } = useApp();
 
-  const style: React.CSSProperties = {
-    color,
-    width,
-    height,
-    opacity,
-    transform: `rotate(${rotation}deg)`,
-    filter: `blur(${blur}px)`,
-    transition: "all 0.2s ease",
-  };
-
-  const Element =
-    icons.find((item) => item.name === iconId)?.Component ?? fallbackIcon;
+  const Element = getIconComponent(iconId);
+  const style = createIconStyle(
+    { iconId, color, width, height, opacity, rotation, blur },
+    { transition: "all 0.2s ease" },
+  );
 
   return (
-    <div className="flex items-center justify-center overflow-y-auto bg-neutral-200 dark:bg-neutral-800 transition-colors duration-200">
+    <div
+      className={`flex items-center justify-center overflow-y-auto bg-neutral-200 dark:bg-neutral-800 transition-colors duration-200 ${className}`.trim()}
+    >
       <Element style={style} />
     </div>
   );
