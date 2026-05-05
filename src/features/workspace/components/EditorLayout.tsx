@@ -1,7 +1,6 @@
 import Canvas from "../../canvas/components/Canvas";
 import Store from "../../store/components/Store";
 import Code from "../../properties/components/Code";
-import Properties from "../../properties/components/Properties";
 
 interface WorkspaceColumnProps {
   children: React.ReactNode;
@@ -29,13 +28,7 @@ function EditorLayout() {
       </WorkspaceColumn>
 
       <WorkspaceColumn>
-        <div className="flex h-full min-h-0 flex-col">
-          <Canvas className="min-h-0 flex-1" />
-          <Properties
-            showModes={false}
-            borderClassName="border-t border-neutral-200 dark:border-black"
-          />
-        </div>
+        <Canvas className="h-full min-h-0" />
       </WorkspaceColumn>
     </div>
   );
