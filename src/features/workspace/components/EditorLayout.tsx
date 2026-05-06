@@ -8,8 +8,8 @@ interface WorkspaceColumnProps {
 
 function WorkspaceColumn({ children }: WorkspaceColumnProps) {
   return (
-    <section className="flex min-h-0 overflow-hidden border-t border-neutral-200 bg-neutral-50 dark:border-black dark:bg-neutral-900 md:border-t-0 md:border-l">
-      <div className="min-h-0 flex-1">{children}</div>
+    <section className="flex min-h-0 flex-col overflow-hidden border-t border-neutral-200 bg-neutral-50 dark:border-black dark:bg-neutral-900 md:border-t-0 md:border-l">
+      <div className="min-h-0 flex-1 overflow-hidden">{children}</div>
     </section>
   );
 }

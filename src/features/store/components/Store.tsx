@@ -5,7 +5,7 @@ function Store() {
   const { iconId, setIconId } = useApp();
 
   return (
-    <div className="overflow-y-auto bg-neutral-50 dark:bg-neutral-900 transition-colors duration-200">
+    <div className="h-full min-h-0 overflow-y-auto bg-neutral-50 dark:bg-neutral-900 transition-colors duration-200">
       <div
         className="grid gap-2.5 p-2.5"
         style={{ gridTemplateColumns: "repeat(auto-fit, minmax(64px, 1fr))" }}
