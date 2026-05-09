@@ -3,10 +3,10 @@ import type { IconType } from "react-icons";
 
 export interface IconDefinition {
   name: string;
-  Component: IconType;
+  component: IconType;
 }
 
-function toIconName(exportName: string) {
+function formatIconName(exportName: string) {
   const name = exportName.replace(/^Fi/, "");
 
   if (name === "Github") {
@@ -16,11 +16,11 @@ function toIconName(exportName: string) {
   return name;
 }
 
-export const icons: IconDefinition[] = Object.entries(FeatherIcons)
+export const iconRegistry: IconDefinition[] = Object.entries(FeatherIcons)
   .filter(([name]) => name.startsWith("Fi"))
-  .map(([name, Component]) => ({
-    name: toIconName(name),
-    Component,
+  .map(([name, component]) => ({
+    name: formatIconName(name),
+    component,
   }));
 
 export const fallbackIcon = FeatherIcons.FiGithub;

@@ -7,7 +7,7 @@ import {
   createRootRoute,
 } from "@tanstack/react-router";
 import { ThemeProvider } from "next-themes";
-import { AppProvider } from "../context/AppContext";
+import { IconSelectionProvider } from "../features/icon-browser/context/icon-selection-context";
 import appCss from "../index.css?url";
 
 export const Route = createRootRoute({
@@ -31,9 +31,9 @@ export const Route = createRootRoute({
         defaultTheme="light"
         enableSystem={false}
       >
-        <AppProvider>
+        <IconSelectionProvider>
           <Outlet />
-        </AppProvider>
+        </IconSelectionProvider>
       </ThemeProvider>
     );
   },
